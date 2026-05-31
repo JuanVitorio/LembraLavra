@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ word.name }}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'words:home' %}">
+        Palavras
+    </a>
+
+    <a href="{% url 'words:categories' %}">
+        Categorias
+    </a>
+
+    <a href="{% url 'words:languages' %}">
+        Línguas
+    </a>
+
+</nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>{{ word.name }}</h1>
+
+            <div class="details">
+
+                <div class="detail-item">
+                    <strong>Tradução:</strong>
+                    {{ word.tradution }}
+                </div>
+
+                <div class="detail-item">
+                    <strong>Significado:</strong>
+                    {{ word.meaning }}
+                </div>
+
+                <div class="detail-item">
+                    <strong>Pronúncia:</strong>
+                    {{ word.pronunciation }}
+                </div>
+
+                <div class="detail-item">
+                    <strong>Língua:</strong>
+                    {{ word.language.name }}
+                </div>
+
+                <div class="detail-item">
+                    <strong>Categoria:</strong>
+                    {{ word.category }}
+                </div>
+
+                <div class="detail-item">
+                    <strong>Adicionado em:</strong>
+                    {{ word.data_created }}
+                </div>
+
+            </div>
+
+            <br>
+
+            <a href="{% url 'words:home' %}" class="btn btn-primary">
+                Voltar
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

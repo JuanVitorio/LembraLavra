@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Línguas</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'words:home' %}">
+        Palavras
+    </a>
+
+    <a href="{% url 'words:categories' %}">
+        Categorias
+    </a>
+
+    <a href="{% url 'words:languages' %}">
+        Línguas
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Línguas</h1>
+
+        <a
+            href="{% url 'words:language_create' %}"
+            class="btn btn-primary"
+        >
+            Nova Língua
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for language in languages %}
+
+                <tr>
+
+                    <td>{{ language.name }}</td>
+
+                    <td>{{ language.sigle }}</td>
+
+                    <td>
+
+                        <a
+                            href="{% url 'words:language_delete' language.id %}"
+                            class="btn btn-delete"
+                        >
+                            Excluir
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+                    <td colspan="3">
+                        Nenhuma língua cadastrada.
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

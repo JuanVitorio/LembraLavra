@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'words:home' %}">
+        Palavras
+    </a>
+
+    <a href="{% url 'words:categories' %}">
+        Categorias
+    </a>
+
+    <a href="{% url 'words:languages' %}">
+        Línguas
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Categorias</h1>
+
+        <a
+            href="{% url 'words:category_create' %}"
+            class="btn btn-primary"
+        >
+            + Nova Categoria
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for category in categories %}
+
+                <tr>
+
+                    <td>
+                        {{ category.name }}
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <a
+                                href="{% url 'words:category_delete' category.id %}"
+                                class="btn btn-delete"
+                            >
+                                Excluir
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        Nenhuma categoria cadastrada.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

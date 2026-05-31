@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Palavra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'words:home' %}">
+        Palavras
+    </a>
+
+    <a href="{% url 'words:categories' %}">
+        Categorias
+    </a>
+
+    <a href="{% url 'words:languages' %}">
+        Línguas
+    </a>
+
+</nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Excluir Palavra</h1>
+
+            <p>
+                Tem certeza que deseja excluir
+                <strong>{{ word.name }}</strong>?
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-delete">
+                    Confirmar Exclusão
+                </button>
+
+                <a href="{% url 'words:home' %}" class="btn btn-primary">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

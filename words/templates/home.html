@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LembraPalavra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'words:home' %}">
+        Palavras
+    </a>
+
+    <a href="{% url 'words:categories' %}">
+        Categorias
+    </a>
+
+    <a href="{% url 'words:languages' %}">
+        Línguas
+    </a>
+
+</nav>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>LembraPalavra</h1>
+
+            <a href="{% url 'words:create' %}" class="btn btn-primary">
+                + Nova Palavra
+            </a>
+        </div>
+
+        <div class="search-box">
+            <form method="GET">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Pesquisar palavra..."
+                    value="{{ search }}"
+                >
+
+                <button type="submit" class="btn btn-primary">
+                    Buscar
+                </button>
+
+            </form>
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Palavra</th>
+                        <th>Língua</th>
+                        <th>Categoria</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for word in words %}
+                    <tr>
+
+                        <td>
+                            <a
+                                class="word-link"
+                                href="{% url 'words:detail' word.id %}"
+                            >
+                                {{ word.name }}
+                            </a>
+                        </td>
+
+                        <td>
+                            {{ word.language.name }}
+                        </td>
+
+                        <td>
+                            {{ word.category }}
+                        </td>
+
+                        <td>
+
+                            <div class="actions">
+
+                                <a
+                                    href="{% url 'words:update' word.id %}"
+                                    class="btn btn-edit"
+                                >
+                                    Editar
+                                </a>
+
+                                <a
+                                    href="{% url 'words:delete' word.id %}"
+                                    class="btn btn-delete"
+                                >
+                                    Excluir
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="4" style="text-align:center;">
+                            Nenhuma palavra cadastrada.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Língua</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Excluir Língua</h1>
+
+        <p>
+            Tem certeza que deseja excluir a língua
+            <strong>{{ language.name }}</strong>
+            ({{ language.sigle }})?
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-delete">
+                Excluir
+            </button>
+
+            <a href="{% url 'words:languages' %}" class="btn btn-primary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
