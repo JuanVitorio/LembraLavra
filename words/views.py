@@ -10,7 +10,7 @@ def home(request):
     words = Word.objects.select_related(
         'language',
         'category'
-    )
+    ).order_by('name')
 
     # Pesquisa por nome
     if search:
@@ -35,7 +35,7 @@ def home(request):
 
     return render(
         request,
-        'home.html',
+        'words/home.html',
         context
     )
 
@@ -51,7 +51,7 @@ def word_detail(request, pk):
 
     return render(
         request,
-        'detail.html',
+        'words/detail.html',
         {'word': word}
     )
 
@@ -69,7 +69,7 @@ def word_create(request):
 
     return render(
         request,
-        'form.html',
+        'words/form.html',
         {'form': form}
     )
 
@@ -92,7 +92,7 @@ def word_update(request, pk):
 
     return render(
         request,
-        'form.html',
+        'words/form.html',
         {'form': form}
     )
 
@@ -106,7 +106,7 @@ def word_delete(request, pk):
 
     return render(
         request,
-        'delete.html',
+        'words/delete.html',
         {'word': word}
     )
 

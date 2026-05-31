@@ -9,6 +9,7 @@
     <title>Excluir Língua</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/icone.ico' %}">
 </head>
 
 <body>
@@ -26,16 +27,17 @@
         </p>
 
         <form method="POST">
-
-            {% csrf_token %}
-
-            <button type="submit" class="btn btn-delete">
-                Excluir
-            </button>
-
-            <a href="{% url 'words:languages' %}" class="btn btn-primary">
-                Cancelar
-            </a>
+            <div class="question">
+                {% csrf_token %}
+    
+                <button type="submit" class="btn btn-delete">
+                    Excluir
+                </button>
+    
+                <a href="{% url 'words:languages' %}" class="btn btn-primary">
+                    Cancelar
+                </a>
+            </div>
 
         </form>
 

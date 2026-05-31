@@ -57,6 +57,10 @@ body {
     color: var(--primary);
 }
 
+.navbar a.active {
+    color: var(--primary);
+}
+
 /* Header */
 .header {
     display: flex;
@@ -246,6 +250,16 @@ form label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--gray-600);
+}
+
+.container p {
+margin-top: 10px;
+}
+
+.question {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 input,

@@ -10,21 +10,31 @@
     <title>LembraPalavra</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/icone.ico' %}">
 </head>
 
 <body>
 
 <nav class="navbar">
 
-    <a href="{% url 'words:home' %}">
+    <a
+        href="{% url 'words:home' %}"
+        class="{% if request.path == '/' %}active{% endif %}"
+    >
         Palavras
     </a>
 
-    <a href="{% url 'words:categories' %}">
+    <a
+        href="{% url 'words:categories' %}"
+        class="{% if '/categories/' in request.path %}active{% endif %}"
+    >
         Categorias
     </a>
 
-    <a href="{% url 'words:languages' %}">
+    <a
+        href="{% url 'words:languages' %}"
+        class="{% if '/languages/' in request.path %}active{% endif %}"
+    >
         Línguas
     </a>
 
