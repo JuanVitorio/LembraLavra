@@ -5,23 +5,39 @@ from .forms import *
 
 def home(request):
     search = request.GET.get('search', '')
+    language_id = request.GET.get('language', '')
 
     words = Word.objects.select_related(
         'language',
         'category'
     )
 
+    # Pesquisa por nome
     if search:
         words = words.filter(
             name__icontains=search
         )
 
+    # Filtro por idioma
+    if language_id:
+        words = words.filter(
+            language_id=language_id
+        )
+
+    languages = Languages.objects.all().order_by('name')
+
     context = {
         'words': words,
-        'search': search
+        'search': search,
+        'languages': languages,
+        'selected_language': language_id
     }
 
-    return render(request, 'home.html', context)
+    return render(
+        request,
+        'home.html',
+        context
+    )
 
 
 def word_detail(request, pk):
