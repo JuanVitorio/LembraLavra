@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'words'
@@ -59,5 +59,6 @@ path(
     views.language_delete,
     name='language_delete'
 ),
+path('accounts/', include('django.contrib.auth.urls')),
 ]
 
