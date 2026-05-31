@@ -1,0 +1,2 @@
+# LembraLavra
+It's an app where you can take note of words from another language, and on the app you can search the word by its languagem, category, subcategory... Exemplo: Merci -> french | meaning: "thank you" | proununce: "mêrcí"
