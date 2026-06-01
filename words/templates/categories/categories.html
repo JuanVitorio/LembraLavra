@@ -1,115 +1,84 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/icone.ico' %}">
 </head>
-
 <body>
 
 <nav class="navbar">
+    <div class="nav-itens">
+        <a
+            href="{% url 'words:home' %}"
+            class="{% if request.path == '/' %}active{% endif %}"
+        >
+            Palavras
+        </a>
+    
+        <a
+            href="{% url 'words:categories' %}"
+            class="{% if '/categories/' in request.path %}active{% endif %}"
+        >
+            Categorias
+        </a>
+    
+        <a
+            href="{% url 'words:languages' %}"
+            class="{% if '/languages/' in request.path %}active{% endif %}"
+        >
+            Línguas
+        </a>
+    </div>
+    <div>
+    {% if user.is_authenticated %}
+    {{ user.username }}
 
-    <a
-        href="{% url 'words:home' %}"
-        class="{% if request.path == '/' %}active{% endif %}"
-    >
-        Palavras
+
+{% else %}
+    <a href="{% url 'login' %}">
+        Entrar
     </a>
-
-    <a
-        href="{% url 'words:categories' %}"
-        class="{% if '/categories/' in request.path %}active{% endif %}"
-    >
-        Categorias
-    </a>
-
-    <a
-        href="{% url 'words:languages' %}"
-        class="{% if '/languages/' in request.path %}active{% endif %}"
-    >
-        Línguas
-    </a>
-
+{% endif %}
+    </div>
 </nav>
 
 <div class="container">
-
     <div class="header">
-
         <h1>Categorias</h1>
-
-        <a
-            href="{% url 'words:category_create' %}"
-            class="btn btn-primary"
-        >
-            + Nova Categoria
-        </a>
-
+        <a href="{% url 'words:category_create' %}" class="btn btn-primary">+ Nova Categoria</a>
     </div>
 
-    <div class="card">
-
+    <div class="card table-responsive">
         <table>
-
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Ações</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 {% for category in categories %}
-
                 <tr>
-
+                    <td>{{ category.name }}</td>
                     <td>
-                        {{ category.name }}
-                    </td>
-
-                    <td>
-
                         <div class="actions">
-
-                            <a
-                                href="{% url 'words:category_delete' category.id %}"
-                                class="btn btn-delete"
-                            >
-                                Excluir
-                            </a>
-
+                            <a href="{% url 'words:category_delete' category.id %}" class="btn btn-delete">Excluir</a>
                         </div>
-
                     </td>
-
                 </tr>
-
                 {% empty %}
-
                 <tr>
-                    <td colspan="2" style="text-align:center;">
-                        Nenhuma categoria cadastrada.
-                    </td>
+                    <td colspan="2" style="text-align:center;">Nenhuma categoria cadastrada.</td>
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
-
     </div>
-
 </div>
 
 </body>
-
 </html>

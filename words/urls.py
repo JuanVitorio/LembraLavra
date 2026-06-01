@@ -59,6 +59,5 @@ path(
     views.language_delete,
     name='language_delete'
 ),
-path('accounts/', include('django.contrib.auth.urls')),
 ]
 

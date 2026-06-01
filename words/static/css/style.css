@@ -44,6 +44,12 @@ body {
     padding: 15px 25px;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    justify-content: space-between;
+}
+
+.navbar .nav-itens {
+    display: flex;
+    gap: 30px;
 }
 
 .navbar a {
@@ -322,12 +328,23 @@ textarea {
     }
 
     table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        width: 100%;
+        display: table; 
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
+        margin-bottom: 5px;
     }
 
     .search-box form {
         flex-direction: column;
+    }
+
+    thead th, tbody td {
+        padding: 12px 10px;
+        min-width: 100px; 
     }
 }

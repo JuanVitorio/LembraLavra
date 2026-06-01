@@ -16,84 +16,95 @@
 <body>
 
 <nav class="navbar">
-
-    <a
-        href="{% url 'words:home' %}"
-        class="{% if request.path == '/' %}active{% endif %}"
-    >
-        Palavras
-    </a>
-
-    <a
-        href="{% url 'words:categories' %}"
-        class="{% if '/categories/' in request.path %}active{% endif %}"
-    >
-        Categorias
-    </a>
-
-    <a
-        href="{% url 'words:languages' %}"
-        class="{% if '/languages/' in request.path %}active{% endif %}"
-    >
-        Línguas
-    </a>
-
+    <div class="nav-itens">
+        <a
+            href="{% url 'words:home' %}"
+            class="{% if request.path == '/' %}active{% endif %}"
+        >
+            Palavras
+        </a>
+    
+        <a
+            href="{% url 'words:categories' %}"
+            class="{% if '/categories/' in request.path %}active{% endif %}"
+        >
+            Categorias
+        </a>
+    
+        <a
+            href="{% url 'words:languages' %}"
+            class="{% if '/languages/' in request.path %}active{% endif %}"
+        >
+            Línguas
+        </a>
+    </div>
+    <div class="user-status">
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% else %}
+            <a href="{% url 'login' %}">
+                Entrar
+            </a>
+        {% endif %}
+    </div>
 </nav>
 
-    <div class="container">
+<div class="container">
 
-        <div class="header">
-            <h1>LembraPalavra</h1>
+    <div class="header">
+        <h1>LembraPalavra</h1>
 
-            <a href="{% url 'words:create' %}" class="btn btn-primary">
-                + Nova Palavra
-            </a>
-        </div>
+        <a href="{% url 'words:create' %}" class="btn btn-primary">
+            + Nova Palavra
+        </a>
+    </div>
 
-<div class="search-box">
+    <div class="search-box">
 
-    <form method="GET">
+        <form method="GET">
 
-        <input
-            type="text"
-            name="search"
-            placeholder="Pesquisar palavra..."
-            value="{{ search }}"
-        >
-
-        <select name="language">
-
-            <option value="">
-                Todas as línguas
-            </option>
-
-            {% for language in languages %}
-
-            <option
-                value="{{ language.id }}"
-                {% if selected_language == language.id|stringformat:"s" %}
-                    selected
-                {% endif %}
+            <input
+                type="text"
+                name="search"
+                placeholder="Pesquisar palavra..."
+                value="{{ search }}"
             >
-                {{ language.name }}
-            </option>
 
-            {% endfor %}
+            <select name="language">
 
-        </select>
+                <option value="">
+                    Todas as línguas
+                </option>
 
-        <button
-            type="submit"
-            class="btn btn-primary"
-        >
-            Buscar
-        </button>
+                {% for language in languages %}
 
-    </form>
+                <option
+                    value="{{ language.id }}"
+                    {% if selected_language == language.id|stringformat:"s" %}
+                        selected
+                    {% endif %}
+                >
+                    {{ language.name }}
+                </option>
 
-</div>
+                {% endfor %}
 
-        <div class="card">
+            </select>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Buscar
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card">
+        
+        <div class="table-responsive">
 
             <table>
 
@@ -165,11 +176,12 @@
                 </tbody>
 
             </table>
-
+            
         </div>
 
     </div>
 
-</body>
+</div>
 
+</body>
 </html>
